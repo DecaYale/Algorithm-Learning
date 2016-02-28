@@ -2,8 +2,16 @@
 #include <iostream>
 using namespace std;
 #include "Queue.h"
+#include "Quick_Union.h"
 
+#if 1
+int main()
+{
+	WeightedQuickUnionUF a(10);
+	a.test();
+}
 
+#elif 0
 int main()
 {
 	char input[100];
@@ -26,3 +34,5 @@ int main()
 	system("pause");
 	return 0;
 }
+
+#endif
