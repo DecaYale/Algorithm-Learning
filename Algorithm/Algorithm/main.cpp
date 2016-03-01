@@ -3,8 +3,15 @@
 using namespace std;
 #include "Queue.h"
 #include "Quick_Union.h"
-
+#include "Sort.h"
 #if 1
+int main()
+{
+	CSort<int> s;
+	s.test();
+}
+#elif 1
+
 int main()
 {
 	WeightedQuickUnionUF a(10);

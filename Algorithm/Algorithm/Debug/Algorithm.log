@@ -1,27 +1,46 @@
-﻿Build started 2016/2/28 21:01:35.
-     1>Project "E:\Works\GitHub\Algorithm-Learning\Algorithm\Algorithm\Algorithm.vcxproj" on node 2 (build target(s)).
+﻿Build started 2016/2/29 16:13:21.
+     1>Project "F:\GitHub\Algotithm Learning\Algorithm\Algorithm\Algorithm.vcxproj" on node 2 (build target(s)).
      1>InitializeBuildStatus:
-         Touching "Debug\Algorithm.unsuccessfulbuild".
+         Creating "Debug\Algorithm.unsuccessfulbuild" because "AlwaysCreate" was specified.
        ClCompile:
          C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc100.pdb" /Gd /TP /analyze- /errorReport:prompt main.cpp
          main.cpp
+     1>f:\github\algotithm learning\algorithm\algorithm\sort.h(81): warning C4018: '<' : signed/unsigned mismatch
+                 f:\github\algotithm learning\algorithm\algorithm\sort.h(60) : while compiling class template member function 'void CSort<T>::test(void)'
+                 with
+                 [
+                     T=int
+                 ]
+                 f:\github\algotithm learning\algorithm\algorithm\main.cpp(10) : see reference to class template instantiation 'CSort<T>' being compiled
+                 with
+                 [
+                     T=int
+                 ]
+     1>f:\github\algotithm learning\algorithm\algorithm\sort.h(87): warning C4018: '<' : signed/unsigned mismatch
+     1>f:\github\algotithm learning\algorithm\algorithm\sort.h(33): warning C4018: '<' : signed/unsigned mismatch
+                 f:\github\algotithm learning\algorithm\algorithm\sort.h(32) : while compiling class template member function 'void CSort<T>::Selection(std::vector<_Ty> &)'
+                 with
+                 [
+                     T=int,
+                     _Ty=int
+                 ]
+     1>f:\github\algotithm learning\algorithm\algorithm\sort.h(36): warning C4018: '<' : signed/unsigned mismatch
        ManifestResourceCompile:
-         C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\bin\rc.exe /nologo /fo"Debug\Algorithm.exe.embed.manifest.res" Debug\Algorithm_manifest.rc 
+         All outputs are up-to-date.
        Link:
-         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"E:\Works\GitHub\Algorithm-Learning\Algorithm\Debug\Algorithm.exe" /INCREMENTAL /NOLOGO /LIBPATH:"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.0\lib\Win32" kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib opencv_calib3d2410d.lib opencv_contrib2410d.lib opencv_core2410d.lib opencv_features2d2410d.lib opencv_flann2410d.lib opencv_gpu2410d.lib opencv_highgui2410d.lib opencv_imgproc2410d.lib opencv_legacy2410d.lib opencv_ml2410d.lib opencv_objdetect2410d.lib opencv_ts2410d.lib opencv_video2410d.lib opencv_nonfree2410d.lib opencv_calib3d2410.lib opencv_contrib2410.lib opencv_core2410.lib opencv_features2d2410.lib opencv_flann2410.lib opencv_gpu2410.lib opencv_highgui2410.lib opencv_imgproc2410.lib opencv_legacy2410.lib opencv_ml2410.lib opencv_objdetect2410.lib opencv_ts2410.lib opencv_video2410.lib opencv_nonfree2410.lib cublas.lib cublas_device.lib cuda.lib cudadevrt.lib cudart.lib cudart_static.lib cufft.lib cufftw.lib curand.lib cusparse.lib nppc.lib nppi.lib npps.lib nvblas.lib nvcuvid.lib OpenCL.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /ManifestFile:"Debug\Algorithm.exe.intermediate.manifest" /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /DEBUG /PDB:"E:\Works\GitHub\Algorithm-Learning\Algorithm\Debug\Algorithm.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"E:\Works\GitHub\Algorithm-Learning\Algorithm\Debug\Algorithm.lib" /MACHINE:X86 Debug\Algorithm.exe.embed.manifest.res
+         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"F:\GitHub\Algotithm Learning\Algorithm\Debug\Algorithm.exe" /INCREMENTAL /NOLOGO opencv_calib3d2410.lib opencv_contrib2410.lib opencv_core2410.lib opencv_features2d2410.lib opencv_flann2410.lib opencv_gpu2410.lib opencv_highgui2410.lib opencv_imgproc2410.lib opencv_legacy2410.lib opencv_ml2410d.lib opencv_objdetect2410.lib opencv_ts2410.lib opencv_video2410.lib opencv_nonfree2410.lib opencv_ocl2410.lib opencv_photo2410.lib opencv_stitching2410.lib opencv_superres2410.lib opencv_videostab2410.lib opencv_calib3d2410d.lib opencv_contrib2410d.lib opencv_core2410d.lib opencv_features2d2410d.lib opencv_flann2410d.lib opencv_gpu2410d.lib opencv_highgui2410d.lib opencv_imgproc2410d.lib opencv_legacy2410d.lib opencv_objdetect2410d.lib opencv_ts2410d.lib opencv_video2410d.lib opencv_nonfree2410d.lib opencv_ocl2410d.lib opencv_photo2410d.lib opencv_stitching2410d.lib opencv_superres2410d.lib opencv_videostab2410d.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /ManifestFile:"Debug\Algorithm.exe.intermediate.manifest" /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /DEBUG /PDB:"F:\GitHub\Algotithm Learning\Algorithm\Debug\Algorithm.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"F:\GitHub\Algotithm Learning\Algorithm\Debug\Algorithm.lib" /MACHINE:X86 Debug\Algorithm.exe.embed.manifest.res
          Debug\main.obj
-         LINK : E:\Works\GitHub\Algorithm-Learning\Algorithm\Debug\Algorithm.exe not found or not built by the last incremental link; performing full link
        Manifest:
          C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\bin\mt.exe /nologo /verbose /out:"Debug\Algorithm.exe.embed.manifest" /manifest Debug\Algorithm.exe.intermediate.manifest
          All outputs are up-to-date.
        LinkEmbedManifest:
          All outputs are up-to-date.
-         Algorithm.vcxproj -> E:\Works\GitHub\Algorithm-Learning\Algorithm\Debug\Algorithm.exe
+         Algorithm.vcxproj -> F:\GitHub\Algotithm Learning\Algorithm\Debug\Algorithm.exe
        FinalizeBuildStatus:
          Deleting file "Debug\Algorithm.unsuccessfulbuild".
          Touching "Debug\Algorithm.lastbuildstate".
-     1>Done Building Project "E:\Works\GitHub\Algorithm-Learning\Algorithm\Algorithm\Algorithm.vcxproj" (build target(s)).
+     1>Done Building Project "F:\GitHub\Algotithm Learning\Algorithm\Algorithm\Algorithm.vcxproj" (build target(s)).
 
 Build succeeded.
 
-Time Elapsed 00:00:01.72
+Time Elapsed 00:00:00.83
