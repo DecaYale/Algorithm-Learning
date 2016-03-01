@@ -1,12 +1,12 @@
-﻿Build started 2016/2/29 16:13:21.
+﻿Build started 2016/3/1 11:14:08.
      1>Project "F:\GitHub\Algotithm Learning\Algorithm\Algorithm\Algorithm.vcxproj" on node 2 (build target(s)).
      1>InitializeBuildStatus:
          Creating "Debug\Algorithm.unsuccessfulbuild" because "AlwaysCreate" was specified.
        ClCompile:
          C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc100.pdb" /Gd /TP /analyze- /errorReport:prompt main.cpp
          main.cpp
-     1>f:\github\algotithm learning\algorithm\algorithm\sort.h(81): warning C4018: '<' : signed/unsigned mismatch
-                 f:\github\algotithm learning\algorithm\algorithm\sort.h(60) : while compiling class template member function 'void CSort<T>::test(void)'
+     1>f:\github\algotithm learning\algorithm\algorithm\sort.h(125): warning C4018: '<' : signed/unsigned mismatch
+                 f:\github\algotithm learning\algorithm\algorithm\sort.h(102) : while compiling class template member function 'void CSort<T>::test(void)'
                  with
                  [
                      T=int
@@ -16,7 +16,8 @@
                  [
                      T=int
                  ]
-     1>f:\github\algotithm learning\algorithm\algorithm\sort.h(87): warning C4018: '<' : signed/unsigned mismatch
+     1>f:\github\algotithm learning\algorithm\algorithm\sort.h(131): warning C4018: '<' : signed/unsigned mismatch
+     1>f:\github\algotithm learning\algorithm\algorithm\sort.h(136): warning C4018: '<' : signed/unsigned mismatch
      1>f:\github\algotithm learning\algorithm\algorithm\sort.h(33): warning C4018: '<' : signed/unsigned mismatch
                  f:\github\algotithm learning\algorithm\algorithm\sort.h(32) : while compiling class template member function 'void CSort<T>::Selection(std::vector<_Ty> &)'
                  with
@@ -43,4 +44,4 @@
 
 Build succeeded.
 
-Time Elapsed 00:00:00.83
+Time Elapsed 00:00:00.89
