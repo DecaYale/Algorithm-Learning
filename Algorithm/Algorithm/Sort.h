@@ -68,7 +68,7 @@ public:
 	{
 		int i = lo,j =mid+1;
 
-		for (int k=lo;k<=hi;k++)//!!
+		for (int k=lo;k<=hi;k++)//!! 
 		{
 			aux[k] = a[k];
 		}
@@ -98,6 +98,20 @@ public:
 		delete aux;
 	}
 	
+	void MergeSortBU(vector<T> & a)
+	{
+		int N = a.size();
+		vector<T> * aux = new vector<T>( N );
+		for(int sz = 1; sz<=(N+1)/2; sz = sz + sz)//for(int sz = 1; sz<= N/2; sz = sz + sz)//注意(N+1)/2,N 奇偶不同时，+1保证merge所有部分
+		{
+			for(int lo = 0; lo<N - sz; lo += sz+sz)
+			{	
+				merge(a,*aux,lo,lo+sz-1,min(lo+sz+sz-1,N-1));
+			}
+		}
+
+		delete aux;
+	}
 
 
 	void test()
@@ -108,6 +122,7 @@ public:
 		vector<int> buf;
 		vector<int> buf2;
 		vector<int> buf3;
+		vector<int> buf4;
 		//buf.push_back(10);
 		//buf.push_back(4);
 		//buf.push_back(1);
@@ -119,10 +134,13 @@ public:
 			buf.push_back(input);
 			buf2.push_back(input);
 			buf3.push_back(input);
+			buf4.push_back(input);
 		}
 		s.Selection(buf);
 		s.Insertion(buf2);
 		s.MergeSort(buf3);
+		s.MergeSortBU(buf4);
+
 		std::cout<<"result of selection sort: "<<'\n';
 		for(int i=0; i < buf.size();i++)
 		{
@@ -139,6 +157,12 @@ public:
 		{
 			std::cout<<buf3.at(i)<<' ';
 		}
+		std::cout<<"\nresult of merge sort bottom to up: "<<'\n';
+		for(int i=0; i < buf4.size();i++)
+		{
+			std::cout<<buf4.at(i)<<' ';
+		}
+
 
 		std::cout<<endl;
 
