@@ -102,7 +102,7 @@ public:
 	{
 		int N = a.size();
 		vector<T> * aux = new vector<T>( N );
-		for(int sz = 1; sz<=(N+1)/2; sz = sz + sz)//for(int sz = 1; sz<= N/2; sz = sz + sz)//注意(N+1)/2,N 奇偶不同时，+1保证merge所有部分
+		for(int sz = 1; sz< N; sz = sz + sz)//for(int sz = 1; sz<= N/2; sz = sz + sz)//注意(N+1)/2,N 奇偶不同时，+1保证merge所有部分
 		{
 			for(int lo = 0; lo<N - sz; lo += sz+sz)
 			{	
@@ -111,6 +111,42 @@ public:
 		}
 
 		delete aux;
+	}
+
+	//快速排序
+	int  partition(vector<T> & a, int lo, int hi)
+	{
+		T q = a[lo];
+		int i=lo,j=hi+1;
+		while(1)
+		{
+			//if (i>=j) break;
+
+			/*if (a[i] < q) i++;
+			else if (a[j] > q) j++;
+			else exch(a,i,j);*/
+
+			while( a[++i] < q && i<hi);
+			while( a[--j] > q && j>lo);
+			if ( i>=j ) break;
+			exch(a,i,j); 
+
+		}
+		exch(a,lo,j); //注意返回j 而非 i 二者交叉进入对方领域
+		return j;
+	}
+	void qSort(vector<T> & a,int lo,int hi)
+	{
+		if (lo>=hi) return;
+
+		int j = partition(a, lo, hi);
+		qSort(a, lo, j-1);//qSort(a, lo, j);
+		qSort(a, j+1, hi);
+
+	}
+	void QuickSort(vector<T> & a)
+	{
+		qSort(a,0,a.size()-1);
 	}
 
 
@@ -123,6 +159,7 @@ public:
 		vector<int> buf2;
 		vector<int> buf3;
 		vector<int> buf4;
+		vector<int> buf5;
 		//buf.push_back(10);
 		//buf.push_back(4);
 		//buf.push_back(1);
@@ -135,11 +172,13 @@ public:
 			buf2.push_back(input);
 			buf3.push_back(input);
 			buf4.push_back(input);
+			buf5.push_back(input);
 		}
 		s.Selection(buf);
 		s.Insertion(buf2);
 		s.MergeSort(buf3);
 		s.MergeSortBU(buf4);
+		s.QuickSort(buf5);
 
 		std::cout<<"result of selection sort: "<<'\n';
 		for(int i=0; i < buf.size();i++)
@@ -161,6 +200,12 @@ public:
 		for(int i=0; i < buf4.size();i++)
 		{
 			std::cout<<buf4.at(i)<<' ';
+		}
+
+		std::cout<<"\nresult of quick sort: "<<'\n';
+		for(int i=0; i < buf5.size();i++)
+		{
+			std::cout<<buf5.at(i)<<' ';
 		}
 
 
