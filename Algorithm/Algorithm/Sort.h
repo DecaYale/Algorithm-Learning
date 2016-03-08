@@ -149,6 +149,55 @@ public:
 		qSort(a,0,a.size()-1);
 	}
 
+	//堆排序
+	void buildHeap(vector<T> & a)
+	{
+		int N = a.size()-1;//首元素无效
+		for(int i= N/2; i>0;i--)
+		{
+			sink(a,i,N);
+		}
+	}
+	void swim(vector<T> & a,int i,int N)//N = a.size()-1
+	{
+		while(i/2 > 0)
+		{
+			int j = i/2;
+			if (a[j]<a[i]) exch(a,i,j);
+			else break;
+
+			i=j;
+		}
+	}
+	void sink(vector<T> & a,int i, int N)
+	{
+		while(2*i<=N)//while(2*i<N)
+		{
+			int j = 2*i;
+			if (j<N && a[j]<a[j+1]) j++; //if (a[j] < a[j+1]) j++; 
+			
+			/*if (a[i]<a[j]) 
+			{
+				exch(a,i,j);
+				i=j;
+			}*/
+			if (a[i]>=a[j]) break;
+			exch(a,i,j);
+			i=j;
+		}
+	}
+	void HeapSort(vector<T> & a)
+	{
+		int N = a.size();
+		buildHeap(a);
+		while(N>1)
+		{
+			exch(a,1,N--);
+			sink(a,1,N);
+		}
+
+	}
+
 
 	void test()
 	{
@@ -160,6 +209,8 @@ public:
 		vector<int> buf3;
 		vector<int> buf4;
 		vector<int> buf5;
+		vector<int> buf6;
+		buf6.push_back(0);
 		//buf.push_back(10);
 		//buf.push_back(4);
 		//buf.push_back(1);
@@ -173,13 +224,14 @@ public:
 			buf3.push_back(input);
 			buf4.push_back(input);
 			buf5.push_back(input);
+			buf6.push_back(input);
 		}
 		s.Selection(buf);
 		s.Insertion(buf2);
 		s.MergeSort(buf3);
 		s.MergeSortBU(buf4);
 		s.QuickSort(buf5);
-
+		s.QuickSort(buf6);
 		std::cout<<"result of selection sort: "<<'\n';
 		for(int i=0; i < buf.size();i++)
 		{
@@ -207,7 +259,11 @@ public:
 		{
 			std::cout<<buf5.at(i)<<' ';
 		}
-
+		std::cout<<"\nresult of heap sort: "<<'\n';
+		for(int i=0; i < buf6.size();i++)
+		{
+			std::cout<<buf6.at(i)<<' ';
+		}
 
 		std::cout<<endl;
 
