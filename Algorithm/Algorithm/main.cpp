@@ -1,17 +1,34 @@
 #include "stdio.h"
 #include <iostream>
+#include <fstream>
+#include <string>
 using namespace std;
 #include "Queue.h"
 #include "Quick_Union.h"
 #include "Sort.h"
+#include "Graph.h"
 #if 1
+int main()
+{
+	ifstream infile("data/tinyG.txt");
+	if (infile.is_open())
+	{
+		Graph g(infile);
+		string gs = g.toString();
+		cout<<gs<<endl;
+	}
+
+	system("pause");
+}
+#elif 1
+//test sort algorithms
 int main()
 {
 	CSort<int> s;
 	s.test();
 }
 #elif 1
-
+//test quick union 
 int main()
 {
 	WeightedQuickUnionUF a(10);

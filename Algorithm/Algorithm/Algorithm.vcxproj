@@ -78,6 +78,7 @@
     <ClCompile Include="Sort.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Graph.h" />
     <ClInclude Include="Queue.h" />
     <ClInclude Include="Quick_Union.h" />
     <ClInclude Include="Sort.h" />
