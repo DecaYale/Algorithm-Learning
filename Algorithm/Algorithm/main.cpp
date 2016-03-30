@@ -8,6 +8,16 @@ using namespace std;
 #include "Sort.h"
 #include "Graph.h"
 #if 1
+int main(int argc, char ** arg)
+{
+	DepthFirstSearch Dfs;
+	Dfs.test();
+
+	DepthFirstPaths Dfp;
+	Dfp.test();
+	system("pause");
+}
+#elif 1
 int main()
 {
 	ifstream infile("data/tinyG.txt");
@@ -17,7 +27,8 @@ int main()
 		string gs = g.toString();
 		cout<<gs<<endl;
 	}
-
+	/*Graph g;
+	g.test();*/
 	system("pause");
 }
 #elif 1
