@@ -15,6 +15,12 @@ int main(int argc, char ** arg)
 
 	DepthFirstPaths Dfp;
 	Dfp.test();
+
+	BreathFirstPaths Bfp;
+	Bfp.test();
+
+	CC cc;
+	cc.test();
 	system("pause");
 }
 #elif 1

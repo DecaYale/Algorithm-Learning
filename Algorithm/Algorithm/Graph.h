@@ -2,6 +2,8 @@
 #include <iostream>
 #include <vector>
 #include <stack>
+#include <queue>
+
 #include <string>
 #include <sstream>
 
@@ -258,7 +260,7 @@ public:
 		//print the node id 
 		int v = 6;
 		stack<int> p = Dfp.pathTo(v);
-		cout<<"The path to node "<<s<<": "<<endl;
+		cout<<"The path to node "<<v<<": "<<endl;
 		while(! p.empty())
 		{
 			cout<< p.top()<<" ";
@@ -266,5 +268,186 @@ public:
 		}
 		cout<<endl;
 	}
+
+};
+
+class BreathFirstPaths
+{
+private:
+	bool * marked;
+	int	 * edgeTo;
+	int s ;
+	int count;
+	queue<int> Queue;
+public:
+	BreathFirstPaths(){};
+	BreathFirstPaths(const Graph & G,int s):s(s),count(0)
+	{
+		marked = new bool [G.V()];
+		memset(marked,false,sizeof(bool) * G.V());
+		edgeTo = new int [G.V()];
+		memset(edgeTo,-1,sizeof(int) * G.V());
+
+		
+		bfs(G,s);
+	}
+	void bfs(const Graph & G, int s)
+	{
+		marked[s] = true;
+		edgeTo[s] = s;//
+		Queue.push(s);
+		
+		while(! Queue.empty())
+		{
+			int f = Queue.front();
+			Queue.pop();
+			count ++;
+
+			vector<int> s_adj = G.adj(f);
+			for(int i=0; i< s_adj.size();i++ )
+			{
+				int w = s_adj.at(i);
+				if (! marked[w])
+				{
+					marked[w] = true;
+					edgeTo[w] = f;
+					Queue.push(w);
+
+				}
+			}
+		}
+		
+	}
+
+	bool hasPathTo(int v)
+	{
+		return marked[v];
+	}
+	stack<int> pathTo(int v)
+	{
+		stack<int> path;
+		for(int x=v; x != s; x=edgeTo[x])
+		{
+			path.push(x);
+		}
+		path.push(s);
+
+		return path;
+	}
+	int  Count()const {return count; }
+
+	void test()
+	{
+		ifstream infile;
+		Graph g;
+		infile.open("data/tinyG.txt");
+		if (infile.is_open()) g.build(infile);
+		string gs = g.toString();
+		cout<<gs<<endl;
+
+		int s = 0;
+		BreathFirstPaths Bfp(g,s);
+		cout<<Bfp.Count()<<" nodes can be reached from node "<<s<<":"<< endl;
+
+		//print the node id 
+		int v = 6;
+		stack<int> p = Bfp.pathTo(v);
+		cout<<"The path to node "<<v<<": "<<endl;
+		while(! p.empty())
+		{
+			cout<< p.top()<<" ";
+			p.pop();
+		}
+		cout<<endl;
+	}
+
+};
+
+
+
+class CC //Connected Component
+{
+private:
+	bool * marked;
+	int  * id;
+	int count; // 连通分量数目
+
+public:
+	CC (){};
+	CC( const Graph & G):count(0)
+	{
+		marked = new bool[G.V()];
+		memset(marked,0,sizeof(bool) * G.V());
+		id = new int [G.V()];
+		memset(id,-1,sizeof(int) * G.V());
+
+		for(int s=0; s<G.V(); s++)
+		{
+			if (!marked[s])
+			{
+				//marked[s] = true;
+				count ++;
+				dfs(G,s);
+				//count ++;//
+			}
+		}
+	}
+
+	void dfs(const Graph & G,int s)
+	{
+		marked[s] = true;
+		id[s] = count; //count 从1开始
+		vector<int> s_adj = G.adj(s) ;
+		for(int i = 0; i<s_adj.size(); i++)
+		{
+			int w = s_adj.at(i);
+			if (!marked[w])
+			{
+				//id[w] = count;
+				dfs(G,w);
+			}
+		}
+	}
+
+	bool connected(int v, int w)
+	{	return id[v] == id[w]; }
+	
+	int ID(int v) 
+	{ return id[v] ;}
+
+	int Count()
+	{ return count; }
+
+
+	void test()
+	{
+		ifstream infile;
+		Graph g;
+		infile.open("data/tinyG.txt");
+		if (infile.is_open()) g.build(infile);
+		string gs = g.toString();
+		cout<<gs<<endl;
+
+		int s = 0;
+		CC cc(g);
+		cout<<"There are "<<cc.Count()<<" connected components in the graph."<<endl;
+
+		//print the node id 
+		int v = 6;
+		
+		cout<<"The CC containing node "<<v<<": "<<endl;
+		for(int i=0; i<g.V(); i++)
+		{
+
+			if (cc.connected(v,i))
+			{
+				cout<< i<<" ";
+		
+			}
+				
+		}
+		cout<<endl;
+	}
+	
 
 };
