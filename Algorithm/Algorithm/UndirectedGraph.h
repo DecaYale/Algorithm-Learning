@@ -68,38 +68,38 @@ public:
 	{
 		return adjList[v];
 	}
-	string toString()
+	std::string toString()
 	{
 		std::stringstream ss;
 		ss<<v;
-		string s = ss.str()+string(" vertices, ");
+		std::string s = ss.str()+std::string(" vertices, ");
 		ss.str("");ss<<e;
-		s += ss.str() + string(" edges\n") ;
+		s += ss.str() + std::string(" edges\n") ;
 		//	s	+= e+ " edges\n";
 		for(int vi=0; vi<v; vi++)
 		{
 			ss.str("");ss<<vi;
-			s += ss.str()+string(": ");
+			s += ss.str()+std::string(": ");
 			for(int wi=0;wi<adjList[vi].size();wi++ ) 
 			{
 				//std::stringstream ss;
 				ss.str("");ss<<adjList[vi].at(wi);
-				s += ss.str() + string(" ");
+				s += ss.str() + std::string(" ");
 			}
-			s += string("\n");
+			s += std::string("\n");
 		}
 		return s;
 	}
 
 	void test()
 	{
-		ifstream infile;
+		std::ifstream infile;
 		infile.open("data/tinyG.txt");
 		if (infile.is_open())
 		{
 			Graph g(infile);
-			string gs = g.toString();
-			cout<<gs<<endl;
+			std::string gs = g.toString();
+			std::cout<<gs<<std::endl;
 		}
 		infile.close();
 
@@ -109,8 +109,8 @@ public:
 		{
 			gg.build(infile);
 		}
-		string gs = gg.toString();
-		cout<<gs<<endl;
+		std::string gs = gg.toString();
+		std::cout<<gs<<std::endl;
 
 
 	}
@@ -123,7 +123,7 @@ class DepthFirstSearch
 private: 
 	bool *marked;
 	int count; //the number of nodes can be reached from s
-	vector<int> connectedID;
+	std::vector<int> connectedID;
 public:
 	DepthFirstSearch(){}
 	DepthFirstSearch(const Graph & G, int s)
@@ -141,7 +141,7 @@ public:
 		marked[s] = true;///
 		connectedID.push_back(s);
 		count ++;
-		vector<int> s_adj = G.adj(s);
+		std::vector<int> s_adj = G.adj(s);
 		for(int i=0; i<s_adj.size(); i++)
 		{
 			dfs(G,s_adj.at(i) );
@@ -157,23 +157,23 @@ public:
 	{
 		for(int i=0; i<connectedID.size(); i++)
 		{
-			cout<<connectedID.at(i)<<" ";
+			std::cout<<connectedID.at(i)<<" ";
 		}
-		cout<< endl;
+		std::cout<< std::endl;
 	}
 
 	void test()
 	{
-		ifstream infile;
+		std::ifstream infile;
 		Graph g;
 		infile.open("data/tinyG.txt");
 		if (infile.is_open()) g.build(infile);
-		string gs = g.toString();
-		cout<<gs<<endl;
+		std::string gs = g.toString();
+		std::cout<<gs<<std::endl;
 
 		int s = 7;
 		DepthFirstSearch Dfs(g,s);
-		cout<<Dfs.Count()<<" nodes can be reached from node "<<s<<":"<< endl;
+		std::cout<<Dfs.Count()<<" nodes can be reached from node "<<s<<":"<< std::endl;
 		
 		//print the node id 
 		Dfs.print();
@@ -188,7 +188,7 @@ private:
 	int * edgeTo;
 	int s;
 	int count; //the number of nodes can be reached from s
-	vector<int> connectedID;
+	std::vector<int> connectedID;
 public:
 	DepthFirstPaths(){}
 	DepthFirstPaths(const Graph & G, int s)
@@ -209,7 +209,7 @@ public:
 		marked[s] = true;///
 		//edgeTo[s] = s;			//connectedID.push_back(s);
 		count ++;
-		vector<int> s_adj = G.adj(s);
+		std::vector<int> s_adj = G.adj(s);
 		for(int i=0; i<s_adj.size(); i++)
 		{
 			int v = s_adj.at(i);
@@ -230,9 +230,9 @@ public:
 		return marked[v];
 	}
 	
-	stack<int> pathTo(int v)
+	std::stack<int> pathTo(int v)
 	{
-		stack<int> path;
+		std::stack<int> path;
  		if (!hasPathTo(v)) return path; 
 
 		for(int x=v; x != s; x = edgeTo[x])
@@ -246,27 +246,27 @@ public:
 	
 	void test()
 	{
-		ifstream infile;
+		std::ifstream infile;
 		Graph g;
 		infile.open("data/tinyG.txt");
 		if (infile.is_open()) g.build(infile);
-		string gs = g.toString();
-		cout<<gs<<endl;
+		std::string gs = g.toString();
+		std::cout<<gs<<std::endl;
 
 		int s = 0;
 		DepthFirstPaths Dfp(g,s);
-		cout<<Dfp.Count()<<" nodes can be reached from node "<<s<<":"<< endl;
+		std::cout<<Dfp.Count()<<" nodes can be reached from node "<<s<<":"<< std::endl;
 
 		//print the node id 
 		int v = 6;
-		stack<int> p = Dfp.pathTo(v);
-		cout<<"The path to node "<<v<<": "<<endl;
+		std::stack<int> p = Dfp.pathTo(v);
+		std::cout<<"The path to node "<<v<<": "<<std::endl;
 		while(! p.empty())
 		{
-			cout<< p.top()<<" ";
+			std::cout<< p.top()<<" ";
 			p.pop();
 		}
-		cout<<endl;
+		std::cout<<std::endl;
 	}
 
 };
@@ -278,7 +278,7 @@ private:
 	int	 * edgeTo;
 	int s ;
 	int count;
-	queue<int> Queue;
+	std::queue<int> Queue;
 public:
 	BreathFirstPaths(){};
 	BreathFirstPaths(const Graph & G,int s):s(s),count(0)
@@ -303,7 +303,7 @@ public:
 			Queue.pop();
 			count ++;
 
-			vector<int> s_adj = G.adj(f);
+			std::vector<int> s_adj = G.adj(f);
 			for(int i=0; i< s_adj.size();i++ )
 			{
 				int w = s_adj.at(i);
@@ -323,9 +323,9 @@ public:
 	{
 		return marked[v];
 	}
-	stack<int> pathTo(int v)
+	std::stack<int> pathTo(int v)
 	{
-		stack<int> path;
+		std::stack<int> path;
 		for(int x=v; x != s; x=edgeTo[x])
 		{
 			path.push(x);
@@ -338,27 +338,27 @@ public:
 
 	void test()
 	{
-		ifstream infile;
+		std::ifstream infile;
 		Graph g;
 		infile.open("data/tinyG.txt");
 		if (infile.is_open()) g.build(infile);
-		string gs = g.toString();
-		cout<<gs<<endl;
+		std::string gs = g.toString();
+		std::cout<<gs<<std::endl;
 
 		int s = 0;
 		BreathFirstPaths Bfp(g,s);
-		cout<<Bfp.Count()<<" nodes can be reached from node "<<s<<":"<< endl;
+		std::cout<<Bfp.Count()<<" nodes can be reached from node "<<s<<":"<< std::endl;
 
 		//print the node id 
 		int v = 6;
-		stack<int> p = Bfp.pathTo(v);
-		cout<<"The path to node "<<v<<": "<<endl;
+		std::stack<int> p = Bfp.pathTo(v);
+		std::cout<<"The path to node "<<v<<": "<<std::endl;
 		while(! p.empty())
 		{
-			cout<< p.top()<<" ";
+			std::cout<< p.top()<<" ";
 			p.pop();
 		}
-		cout<<endl;
+		std::cout<<std::endl;
 	}
 
 };
@@ -397,7 +397,7 @@ public:
 	{
 		marked[s] = true;
 		id[s] = count; //count ´Ó1¿ªÊ¼
-		vector<int> s_adj = G.adj(s) ;
+		std::vector<int> s_adj = G.adj(s) ;
 		for(int i = 0; i<s_adj.size(); i++)
 		{
 			int w = s_adj.at(i);
@@ -421,32 +421,32 @@ public:
 
 	void test()
 	{
-		ifstream infile;
+		std::ifstream infile;
 		Graph g;
 		infile.open("data/tinyG.txt");
 		if (infile.is_open()) g.build(infile);
-		string gs = g.toString();
-		cout<<gs<<endl;
+		std::string gs = g.toString();
+		std::cout<<gs<<std::endl;
 
 		int s = 0;
 		CC cc(g);
-		cout<<"There are "<<cc.Count()<<" connected components in the graph."<<endl;
+		std::cout<<"There are "<<cc.Count()<<" connected components in the graph."<<std::endl;
 
 		//print the node id 
 		int v = 6;
 		
-		cout<<"The CC containing node "<<v<<": "<<endl;
+		std::cout<<"The CC containing node "<<v<<": "<<std::endl;
 		for(int i=0; i<g.V(); i++)
 		{
 
 			if (cc.connected(v,i))
 			{
-				cout<< i<<" ";
+				std::cout<< i<<" ";
 		
 			}
 				
 		}
-		cout<<endl;
+		std::cout<<std::endl;
 	}
 	
 

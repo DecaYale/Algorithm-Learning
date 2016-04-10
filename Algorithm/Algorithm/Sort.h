@@ -12,15 +12,15 @@ public:
 	{
 		return a < b;
 	}
-	void exch(vector<T> & a ,int i, int j)
+	void exch(std::vector<T> & a ,int i, int j)
 	{
 		T tmp = a[i];
 		a[i] = a[j];
 		a[j] = tmp;
 	}
-	bool isSorted(vector<T> a)
+	bool isSorted(std::vector<T> a)
 	{
-		for(vector<T> ::iterator iter = ++a.begin();iter != a.end();iter++)
+		for(std::vector<T> ::iterator iter = ++a.begin();iter != a.end();iter++)
 		{
 			if( (*iter),*(--iter) ) return false;
 
@@ -28,7 +28,7 @@ public:
 		return true;
 	}
 	//选择排序
-	void Selection(vector<T> & a)
+	void Selection(std::vector<T> & a)
 	{
 		for(int i=0;i<a.size();i++)
 		{
@@ -44,7 +44,7 @@ public:
 		}
 	}
 	//插入排序
-	void Insertion(vector<T> & a)
+	void Insertion(std::vector<T> & a)
 	{
 		int N = a.size();
 		for(int i=1; i<N; i++)
@@ -57,14 +57,14 @@ public:
 	}
 
 	//shell sort
-	void Shell(vector<T> & a)
+	void Shell(std::vector<T> & a)
 	{
 		int N = a.size();
 		//...
 	}
 
 	//归并排序
-	void merge(vector<T> & a ,vector<T> & aux, int lo, int mid, int hi)//[lo..mid] 和[mid+1..hi]
+	void merge(std::vector<T> & a ,std::vector<T> & aux, int lo, int mid, int hi)//[lo..mid] 和[mid+1..hi]
 	{
 		int i = lo,j =mid+1;
 
@@ -80,7 +80,7 @@ public:
 			else a[k] = aux[j++];
 		}
 	}
-	void mSort(vector<T> & a, vector<T> & aux, int lo, int hi)
+	void mSort(std::vector<T> & a, std::vector<T> & aux, int lo, int hi)
 	{
 		if (lo >= hi) return;
 		int mid = lo + (hi -lo)/2;//(lo+hi)/2;
@@ -89,19 +89,19 @@ public:
 		merge(a,aux,lo,mid,hi);
 
 	}
-	void MergeSort(vector<T>& a )
+	void MergeSort(std::vector<T>& a )
 	{
-		vector <T> * aux = new vector <T>(a.size());
+		std::vector <T> * aux = new std::vector <T>(a.size());
 		mSort(a,*aux,0,a.size()-1);
 		//for (int i=0;i<aux->size();i++)
 		//	a[i] = (*aux)[i];
 		delete aux;
 	}
 	
-	void MergeSortBU(vector<T> & a)
+	void MergeSortBU(std::vector<T> & a)
 	{
 		int N = a.size();
-		vector<T> * aux = new vector<T>( N );
+		std::vector<T> * aux = new std::vector<T>( N );
 		for(int sz = 1; sz< N; sz = sz + sz)//for(int sz = 1; sz<= N/2; sz = sz + sz)//注意(N+1)/2,N 奇偶不同时，+1保证merge所有部分
 		{
 			for(int lo = 0; lo<N - sz; lo += sz+sz)
@@ -114,7 +114,7 @@ public:
 	}
 
 	//快速排序
-	int  partition(vector<T> & a, int lo, int hi)
+	int  partition(std::vector<T> & a, int lo, int hi)
 	{
 		T q = a[lo];
 		int i=lo,j=hi+1;
@@ -135,7 +135,7 @@ public:
 		exch(a,lo,j); //注意返回j 而非 i 二者交叉进入对方领域
 		return j;
 	}
-	void qSort(vector<T> & a,int lo,int hi)
+	void qSort(std::vector<T> & a,int lo,int hi)
 	{
 		if (lo>=hi) return;
 
@@ -144,13 +144,13 @@ public:
 		qSort(a, j+1, hi);
 
 	}
-	void QuickSort(vector<T> & a)
+	void QuickSort(std::vector<T> & a)
 	{
 		qSort(a,0,a.size()-1);
 	}
 
 	//堆排序
-	void buildHeap(vector<T> & a)
+	void buildHeap(std::vector<T> & a)
 	{
 		int N = a.size()-1;//首元素无效
 		for(int i= N/2; i>0;i--)
@@ -158,7 +158,7 @@ public:
 			sink(a,i,N);
 		}
 	}
-	void swim(vector<T> & a,int i,int N)//N = a.size()-1
+	void swim(std::vector<T> & a,int i,int N)//N = a.size()-1
 	{
 		while(i/2 > 0)
 		{
@@ -169,7 +169,7 @@ public:
 			i=j;
 		}
 	}
-	void sink(vector<T> & a,int i, int N)
+	void sink(std::vector<T> & a,int i, int N)
 	{
 		while(2*i<=N)//while(2*i<N)
 		{
@@ -186,7 +186,7 @@ public:
 			i=j;
 		}
 	}
-	void HeapSort(vector<T> & a)
+	void HeapSort(std::vector<T> & a)
 	{
 		int N = a.size();
 		buildHeap(a);
@@ -204,12 +204,12 @@ public:
 		CSort<int> s;
 		std::cout<<"Please input some integers:"<<std::endl;
 		int input;
-		vector<int> buf;
-		vector<int> buf2;
-		vector<int> buf3;
-		vector<int> buf4;
-		vector<int> buf5;
-		vector<int> buf6;
+		std::vector<int> buf;
+		std::vector<int> buf2;
+		std::vector<int> buf3;
+		std::vector<int> buf4;
+		std::vector<int> buf5;
+		std::vector<int> buf6;
 		buf6.push_back(0);
 		//buf.push_back(10);
 		//buf.push_back(4);

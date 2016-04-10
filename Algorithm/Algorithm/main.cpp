@@ -2,12 +2,24 @@
 #include <iostream>
 #include <fstream>
 #include <string>
-using namespace std;
+
 #include "Queue.h"
 #include "Quick_Union.h"
 #include "Sort.h"
-#include "Graph.h"
+#include "UndirectedGraph.h"
+#include "DirectedGraph.h"
+using namespace std;
+
 #if 1
+int main()
+{
+	Digraph Dg;
+	Dg.test();
+	
+	system("pause");
+}
+
+#elif 1
 int main(int argc, char ** arg)
 {
 	DepthFirstSearch Dfs;

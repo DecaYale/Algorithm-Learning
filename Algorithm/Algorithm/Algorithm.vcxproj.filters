@@ -35,7 +35,10 @@
     <ClInclude Include="Sort.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Graph.h">
+    <ClInclude Include="UndirectedGraph.h">
+      <Filter>Header Files\Graph</Filter>
+    </ClInclude>
+    <ClInclude Include="DirectedGraph.h">
       <Filter>Header Files\Graph</Filter>
     </ClInclude>
   </ItemGroup>
