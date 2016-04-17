@@ -3,7 +3,7 @@
 #include <iostream>
 #include <vector>
 #include <fstream>
-
+#include <stack>
 #include <string>
 #include <sstream>
 class Digraph
@@ -56,10 +56,10 @@ public:
 		m_e++;
 	}
 
-	int V(){ return m_v; }
-	int E(){ return m_e; }
+	int V()const{ return m_v; }
+	int E()const{ return m_e; }
 	
-	std::vector<int > adj(int v)
+	std::vector<int > adj(int v) const 
 	{
 		return adjList[v];
 	}
@@ -125,5 +125,155 @@ public:
 
 		Digraph rg = gg.reverse();
 		std::cout<<"The reversed graph:\n"<<rg.toString() <<std::endl;
+	}
+};
+
+
+class DirectedDFS
+{
+private:
+	bool * marked;
+	//vector<int> * adjList;
+public:
+	DirectedDFS();
+	DirectedDFS(Digraph G, int s)
+	{
+		marked = new bool[G.V()];
+		memset(marked,false,sizeof(bool) * G.V());
+		dfs(G,s);
+	}
+
+	void dfs(Digraph G, int v)
+	{
+		marked[v] = true;
+		std::vector<int> adj_v = G.adj(v);
+		for(int i=0; i<adj_v.size(); i++)
+		{
+			int w = adj_v.at(i);
+			if (!marked[w])
+			{
+				dfs(G,w);
+			}
+		}
+		
+	}
+
+	////print the node id can be reached from s
+	//void print()
+	//{
+	//	for(int i=0; i<connectedID.size(); i++)
+	//	{
+	//		std::cout<<connectedID.at(i)<<" ";
+	//	}
+	//	std::cout<< std::endl;
+	//}
+	//void test()
+	//{
+	//	std::ifstream infile;
+	//	Digraph g;
+	//	infile.open("data/tinyDG.txt");
+	//	if (infile.is_open()) g.build(infile);
+	//	std::string gs = g.toString();
+	//	std::cout<<gs<<std::endl;
+
+	//	int s = 7;
+	//	DepthFirstSearch Dfs(g,s);
+	//	std::cout<<	" nodes can be reached from node "<<s<<":"<< std::endl;
+
+	//	//print the node id 
+	//	Dfs.print();
+	//}
+
+};
+
+class DirectedCycle
+{
+private: 
+	bool * marked;
+	bool * onstack;
+	int * edgeTo;
+	std::stack<int > cycle;
+public:
+	DirectedCycle(){};
+	DirectedCycle(const Digraph & G)
+	{
+		marked = new bool[G.V()];
+		memset(marked,false,sizeof(bool) * G.V());
+		onstack = new bool[G.V()];
+		memset(onstack,false,sizeof(bool) * G.V());
+		edgeTo = new int[G.V()];
+		memset(edgeTo,-1,sizeof(int) * G.V());
+		//±È¿˙…≠¡÷
+		for(int v=0; v<G.V(); v++)
+			if (!marked[v]) dfs(G,v);
+
+	}
+	void dfs(const Digraph G ,int v)
+	{
+		marked[v] = true;
+		std::vector<int> adj_v = G.adj(v);
+
+		for(int i=0; i<adj_v.size(); i++)
+		{
+			int w = adj_v.at(i);
+			onstack[w] = true;
+			if (hasCycle())
+			{
+				return;
+			}
+			if (!marked[w])
+			{
+				edgeTo[w] = v;
+				dfs(G,w);
+			}
+			else if (onstack[w])
+			{
+				for(int x=v; x!=w; x= edgeTo[x])
+				{
+					cycle.push(x);
+				}
+				cycle.push(w);
+				cycle.push(v);
+
+			}
+
+		}
+		onstack[v] = false;
+
+	}
+
+	bool hasCycle()
+	{
+		return cycle.size() != 0;
+	}
+	std::stack<int> Cycle()
+	{
+		return cycle;
+	}
+
+	void test()
+	{
+		std::ifstream infile;
+		infile.open("data/tinyDG.txt");
+
+		Digraph gg;
+		if (infile.is_open())
+		{
+			gg.build(infile);
+		}
+		std::string gs = gg.toString();
+		std::cout<<gs<<std::endl;
+
+		DirectedCycle dc(gg);
+
+		std::cout<<"The input Digraph has cycles?(bool) "<<dc.hasCycle()<<std::endl;
+		std::cout<<"The first cycle that has been found is: "<<std::endl;
+		std::stack<int> cyc = dc.Cycle();
+		for(;cyc.size()!=0;cyc.pop())
+		{
+			std::cout<<cyc.top()<<' ';
+		}
+		std::cout<<'\n';
+		system("pause");
 	}
 };

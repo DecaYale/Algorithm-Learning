@@ -10,7 +10,14 @@
 #include "DirectedGraph.h"
 using namespace std;
 
+
 #if 1
+int main()
+{
+	DirectedCycle Dc;
+	Dc.test();
+}
+#elif 1
 int main()
 {
 	Digraph Dg;
