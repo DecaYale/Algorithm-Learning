@@ -14,8 +14,16 @@ using namespace std;
 #if 1
 int main()
 {
+	KosarajuSCC kscc;
+	kscc.test();
+}
+#elif 1
+int main()
+{
 	DirectedCycle Dc;
 	Dc.test();
+
+
 }
 #elif 1
 int main()
